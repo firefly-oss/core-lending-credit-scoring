@@ -1,8 +1,8 @@
 package com.catalis.core.lending.scoring.interfaces.dtos.cases.v1;
 
-import com.catalis.common.core.filters.FilterableId;
 import com.catalis.core.lending.scoring.interfaces.enums.cases.v1.CaseStatusEnum;
 import com.catalis.core.lending.scoring.interfaces.enums.cases.v1.CaseTypeEnum;
+import com.catalis.core.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
