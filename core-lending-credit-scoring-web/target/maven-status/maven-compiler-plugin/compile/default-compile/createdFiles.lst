@@ -1,6 +1,0 @@
-com/firefly/core/lending/scoring/web/controllers/bureau/v1/ScoringBureauCallController.class
-com/firefly/core/lending/scoring/web/CreditScoringApplication.class
-com/firefly/core/lending/scoring/web/controllers/model/v1/ScoringModelController.class
-com/firefly/core/lending/scoring/web/controllers/request/v1/ScoringRequestController.class
-com/firefly/core/lending/scoring/web/controllers/cases/v1/ScoringCaseController.class
-com/firefly/core/lending/scoring/web/controllers/result/v1/ScoringResultController.class
