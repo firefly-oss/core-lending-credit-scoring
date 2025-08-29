@@ -1,0 +1,15 @@
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/request/v1/ScoringRequestService.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/result/v1/ScoringResultServiceImpl.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/cases/v1/ScoringCaseServiceImpl.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/result/v1/ScoringResultService.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/mappers/bureau/v1/ScoringBureauCallMapper.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/request/v1/ScoringRequestServiceImpl.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/mappers/cases/v1/ScoringCaseMapper.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/cases/v1/ScoringCaseService.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/model/v1/ScoringModelService.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/mappers/request/v1/ScoringRequestMapper.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/model/v1/ScoringModelServiceImpl.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/mappers/model/v1/ScoringModelMapper.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/bureau/v1/ScoringBureauCallServiceImpl.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/services/bureau/v1/ScoringBureauCallService.java
+/Users/ancongui/Development/firefly/core-lending-credit-scoring/core-lending-credit-scoring-core/src/main/java/com/firefly/core/lending/scoring/core/mappers/result/v1/ScoringResultMapper.java
