@@ -6,10 +6,13 @@ import com.firefly.core.lending.scoring.core.services.cases.v1.ScoringCaseServic
 import com.firefly.core.lending.scoring.interfaces.dtos.cases.v1.ScoringCaseDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/scoring-cases")
@@ -30,14 +33,14 @@ public class ScoringCaseController {
 
     @PostMapping
     @Operation(summary = "Create a new scoring case")
-    public Mono<ResponseEntity<ScoringCaseDTO>> create(@RequestBody ScoringCaseDTO dto) {
+    public Mono<ResponseEntity<ScoringCaseDTO>> create(@Valid @RequestBody ScoringCaseDTO dto) {
         return service.create(dto)
                 .map(ResponseEntity::ok);
     }
 
     @GetMapping("/{scoringCaseId}")
     @Operation(summary = "Get a scoring case by ID")
-    public Mono<ResponseEntity<ScoringCaseDTO>> getById(@PathVariable Long scoringCaseId) {
+    public Mono<ResponseEntity<ScoringCaseDTO>> getById(@PathVariable UUID scoringCaseId) {
         return service.getById(scoringCaseId)
                 .map(ResponseEntity::ok);
     }
@@ -45,15 +48,15 @@ public class ScoringCaseController {
     @PutMapping("/{scoringCaseId}")
     @Operation(summary = "Update a scoring case")
     public Mono<ResponseEntity<ScoringCaseDTO>> update(
-            @PathVariable Long scoringCaseId,
-            @RequestBody ScoringCaseDTO dto) {
+            @PathVariable UUID scoringCaseId,
+            @Valid @RequestBody ScoringCaseDTO dto) {
         return service.update(scoringCaseId, dto)
                 .map(ResponseEntity::ok);
     }
 
     @DeleteMapping("/{scoringCaseId}")
     @Operation(summary = "Delete a scoring case")
-    public Mono<ResponseEntity<Void>> delete(@PathVariable Long scoringCaseId) {
+    public Mono<ResponseEntity<Void>> delete(@PathVariable UUID scoringCaseId) {
         return service.delete(scoringCaseId)
                 .thenReturn(ResponseEntity.noContent().build());
     }

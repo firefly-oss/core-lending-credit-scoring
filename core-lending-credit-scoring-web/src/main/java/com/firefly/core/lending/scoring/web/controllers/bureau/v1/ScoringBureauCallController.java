@@ -6,10 +6,13 @@ import com.firefly.core.lending.scoring.core.services.bureau.v1.ScoringBureauCal
 import com.firefly.core.lending.scoring.interfaces.dtos.bureau.v1.ScoringBureauCallDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/scoring-cases/{scoringCaseId}/bureau-calls")
@@ -22,7 +25,7 @@ public class ScoringBureauCallController {
     @GetMapping
     @Operation(summary = "List or search bureau calls for a scoring case")
     public Mono<ResponseEntity<PaginationResponse<ScoringBureauCallDTO>>> findAll(
-            @PathVariable Long scoringCaseId,
+            @PathVariable UUID scoringCaseId,
             @ModelAttribute FilterRequest<ScoringBureauCallDTO> filterRequest) {
 
         return service.findAll(scoringCaseId, filterRequest)
@@ -32,8 +35,8 @@ public class ScoringBureauCallController {
     @PostMapping
     @Operation(summary = "Create a new bureau call record")
     public Mono<ResponseEntity<ScoringBureauCallDTO>> create(
-            @PathVariable Long scoringCaseId,
-            @RequestBody ScoringBureauCallDTO dto) {
+            @PathVariable UUID scoringCaseId,
+            @Valid @RequestBody ScoringBureauCallDTO dto) {
 
         return service.create(scoringCaseId, dto)
                 .map(ResponseEntity::ok);
@@ -42,8 +45,8 @@ public class ScoringBureauCallController {
     @GetMapping("/{scoringBureauCallId}")
     @Operation(summary = "Get a bureau call record by ID")
     public Mono<ResponseEntity<ScoringBureauCallDTO>> getById(
-            @PathVariable Long scoringCaseId,
-            @PathVariable Long scoringBureauCallId) {
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringBureauCallId) {
 
         return service.getById(scoringCaseId, scoringBureauCallId)
                 .map(ResponseEntity::ok);
@@ -52,9 +55,9 @@ public class ScoringBureauCallController {
     @PutMapping("/{scoringBureauCallId}")
     @Operation(summary = "Update a bureau call record")
     public Mono<ResponseEntity<ScoringBureauCallDTO>> update(
-            @PathVariable Long scoringCaseId,
-            @PathVariable Long scoringBureauCallId,
-            @RequestBody ScoringBureauCallDTO dto) {
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringBureauCallId,
+            @Valid @RequestBody ScoringBureauCallDTO dto) {
 
         return service.update(scoringCaseId, scoringBureauCallId, dto)
                 .map(ResponseEntity::ok);
@@ -63,8 +66,8 @@ public class ScoringBureauCallController {
     @DeleteMapping("/{scoringBureauCallId}")
     @Operation(summary = "Delete a bureau call record")
     public Mono<ResponseEntity<Void>> delete(
-            @PathVariable Long scoringCaseId,
-            @PathVariable Long scoringBureauCallId) {
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringBureauCallId) {
 
         return service.delete(scoringCaseId, scoringBureauCallId)
                 .thenReturn(ResponseEntity.noContent().build());

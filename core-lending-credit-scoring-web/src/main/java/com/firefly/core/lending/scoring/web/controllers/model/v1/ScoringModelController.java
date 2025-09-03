@@ -6,10 +6,13 @@ import com.firefly.core.lending.scoring.core.services.model.v1.ScoringModelServi
 import com.firefly.core.lending.scoring.interfaces.dtos.model.v1.ScoringModelDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/scoring-models")
@@ -30,14 +33,14 @@ public class ScoringModelController {
 
     @PostMapping
     @Operation(summary = "Create a new scoring model")
-    public Mono<ResponseEntity<ScoringModelDTO>> create(@RequestBody ScoringModelDTO dto) {
+    public Mono<ResponseEntity<ScoringModelDTO>> create(@Valid @RequestBody ScoringModelDTO dto) {
         return service.create(dto)
                 .map(ResponseEntity::ok);
     }
 
     @GetMapping("/{scoringModelId}")
     @Operation(summary = "Get a scoring model by ID")
-    public Mono<ResponseEntity<ScoringModelDTO>> getById(@PathVariable Long scoringModelId) {
+    public Mono<ResponseEntity<ScoringModelDTO>> getById(@PathVariable UUID scoringModelId) {
         return service.getById(scoringModelId)
                 .map(ResponseEntity::ok);
     }
@@ -45,15 +48,15 @@ public class ScoringModelController {
     @PutMapping("/{scoringModelId}")
     @Operation(summary = "Update a scoring model")
     public Mono<ResponseEntity<ScoringModelDTO>> update(
-            @PathVariable Long scoringModelId,
-            @RequestBody ScoringModelDTO dto) {
+            @PathVariable UUID scoringModelId,
+            @Valid @RequestBody ScoringModelDTO dto) {
         return service.update(scoringModelId, dto)
                 .map(ResponseEntity::ok);
     }
 
     @DeleteMapping("/{scoringModelId}")
     @Operation(summary = "Delete a scoring model")
-    public Mono<ResponseEntity<Void>> delete(@PathVariable Long scoringModelId) {
+    public Mono<ResponseEntity<Void>> delete(@PathVariable UUID scoringModelId) {
         return service.delete(scoringModelId)
                 .thenReturn(ResponseEntity.noContent().build());
     }

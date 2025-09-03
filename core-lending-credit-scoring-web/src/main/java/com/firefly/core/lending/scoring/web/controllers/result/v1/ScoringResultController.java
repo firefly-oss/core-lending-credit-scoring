@@ -6,10 +6,13 @@ import com.firefly.core.lending.scoring.core.services.result.v1.ScoringResultSer
 import com.firefly.core.lending.scoring.interfaces.dtos.result.v1.ScoringResultDTO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/v1/scoring-cases/{scoringCaseId}/requests/{scoringRequestId}/results")
@@ -22,8 +25,8 @@ public class ScoringResultController {
     @GetMapping
     @Operation(summary = "List or search scoring results for a request")
     public Mono<ResponseEntity<PaginationResponse<ScoringResultDTO>>> findAll(
-            @PathVariable Long scoringCaseId,
-            @PathVariable Long scoringRequestId,
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
             @ModelAttribute FilterRequest<ScoringResultDTO> filterRequest) {
 
         return service.findAll(scoringCaseId, scoringRequestId, filterRequest)
@@ -33,9 +36,9 @@ public class ScoringResultController {
     @PostMapping
     @Operation(summary = "Create a new scoring result")
     public Mono<ResponseEntity<ScoringResultDTO>> create(
-            @PathVariable Long scoringCaseId,
-            @PathVariable Long scoringRequestId,
-            @RequestBody ScoringResultDTO dto) {
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @Valid @RequestBody ScoringResultDTO dto) {
 
         return service.create(scoringCaseId, scoringRequestId, dto)
                 .map(ResponseEntity::ok);
@@ -44,9 +47,9 @@ public class ScoringResultController {
     @GetMapping("/{scoringResultId}")
     @Operation(summary = "Get a scoring result by ID")
     public Mono<ResponseEntity<ScoringResultDTO>> getById(
-            @PathVariable Long scoringCaseId,
-            @PathVariable Long scoringRequestId,
-            @PathVariable Long scoringResultId) {
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @PathVariable UUID scoringResultId) {
 
         return service.getById(scoringCaseId, scoringRequestId, scoringResultId)
                 .map(ResponseEntity::ok);
@@ -55,10 +58,10 @@ public class ScoringResultController {
     @PutMapping("/{scoringResultId}")
     @Operation(summary = "Update a scoring result")
     public Mono<ResponseEntity<ScoringResultDTO>> update(
-            @PathVariable Long scoringCaseId,
-            @PathVariable Long scoringRequestId,
-            @PathVariable Long scoringResultId,
-            @RequestBody ScoringResultDTO dto) {
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @PathVariable UUID scoringResultId,
+            @Valid @RequestBody ScoringResultDTO dto) {
 
         return service.update(scoringCaseId, scoringRequestId, scoringResultId, dto)
                 .map(ResponseEntity::ok);
@@ -67,9 +70,9 @@ public class ScoringResultController {
     @DeleteMapping("/{scoringResultId}")
     @Operation(summary = "Delete a scoring result")
     public Mono<ResponseEntity<Void>> delete(
-            @PathVariable Long scoringCaseId,
-            @PathVariable Long scoringRequestId,
-            @PathVariable Long scoringResultId) {
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @PathVariable UUID scoringResultId) {
 
         return service.delete(scoringCaseId, scoringRequestId, scoringResultId)
                 .thenReturn(ResponseEntity.noContent().build());
