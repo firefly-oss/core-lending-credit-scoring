@@ -1,0 +1,1683 @@
+openapi: 3.0.1
+info:
+  title: core-lending-credit-scoring
+  description: Credit Scoring Core Application
+  contact:
+    name: Firefly Software Solutions Inc
+    email: dev@getfirefly.io
+  version: 1.0.0
+servers:
+  - url: http://core.catalis.vc/credit-score
+    description: Development Environment
+  - url: /
+    description: Local Development Environment
+tags:
+  - name: ScoringBureauCall
+    description: Operations for bureau calls under a scoring case
+  - name: ScoringRequest
+    description: Operations for scoring requests under a scoring case
+  - name: ScoringModel
+    description: Operations for managing scoring models
+  - name: ScoringCase
+    description: Operations for managing scoring cases
+  - name: ScoringResult
+    description: Operations for scoring results within a scoring request
+paths:
+  /api/v1/scoring-models/{scoringModelId}:
+    get:
+      tags:
+        - ScoringModel
+      summary: Get a scoring model by ID
+      operationId: getById
+      parameters:
+        - name: scoringModelId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringModelDTO'
+    put:
+      tags:
+        - ScoringModel
+      summary: Update a scoring model
+      operationId: update
+      parameters:
+        - name: scoringModelId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringModelDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringModelDTO'
+    delete:
+      tags:
+        - ScoringModel
+      summary: Delete a scoring model
+      operationId: delete
+      parameters:
+        - name: scoringModelId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+  /api/v1/scoring-cases/{scoringCaseId}:
+    get:
+      tags:
+        - ScoringCase
+      summary: Get a scoring case by ID
+      operationId: getById_1
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringCaseDTO'
+    put:
+      tags:
+        - ScoringCase
+      summary: Update a scoring case
+      operationId: update_1
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringCaseDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringCaseDTO'
+    delete:
+      tags:
+        - ScoringCase
+      summary: Delete a scoring case
+      operationId: delete_1
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+  /api/v1/scoring-cases/{scoringCaseId}/requests/{scoringRequestId}:
+    get:
+      tags:
+        - ScoringRequest
+      summary: Get a scoring request by ID
+      operationId: getById_2
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringRequestDTO'
+    put:
+      tags:
+        - ScoringRequest
+      summary: Update a scoring request
+      operationId: update_2
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringRequestDTO'
+    delete:
+      tags:
+        - ScoringRequest
+      summary: Delete a scoring request
+      operationId: delete_2
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+  /api/v1/scoring-cases/{scoringCaseId}/requests/{scoringRequestId}/results/{scoringResultId}:
+    get:
+      tags:
+        - ScoringResult
+      summary: Get a scoring result by ID
+      operationId: getById_3
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringResultId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringResultDTO'
+    put:
+      tags:
+        - ScoringResult
+      summary: Update a scoring result
+      operationId: update_3
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringResultId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringResultDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringResultDTO'
+    delete:
+      tags:
+        - ScoringResult
+      summary: Delete a scoring result
+      operationId: delete_3
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringResultId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+  /api/v1/scoring-cases/{scoringCaseId}/bureau-calls/{scoringBureauCallId}:
+    get:
+      tags:
+        - ScoringBureauCall
+      summary: Get a bureau call record by ID
+      operationId: getById_4
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringBureauCallId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringBureauCallDTO'
+    put:
+      tags:
+        - ScoringBureauCall
+      summary: Update a bureau call record
+      operationId: update_4
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringBureauCallId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringBureauCallDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringBureauCallDTO'
+    delete:
+      tags:
+        - ScoringBureauCall
+      summary: Delete a bureau call record
+      operationId: delete_4
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringBureauCallId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+      responses:
+        '200':
+          description: OK
+  /api/v1/scoring-models:
+    get:
+      tags:
+        - ScoringModel
+      summary: List or search scoring models
+      operationId: findAll
+      parameters:
+        - name: pagination.pageNumber
+          in: query
+          description: Page number (0-based)
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pagination.pageSize
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: pagination.sortBy
+          in: query
+          description: Field to sort by
+          required: false
+          schema:
+            type: string
+        - name: pagination.sortDirection
+          in: query
+          description: Sort direction (ASC or DESC)
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: options.caseInsensitiveStrings
+          in: query
+          description: Enable case-insensitive string filtering
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: options.includeInheritedFields
+          in: query
+          description: Include fields from parent classes
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: filters.modelName
+          in: query
+          description: Exact filter for model name
+          required: false
+          schema:
+            type: string
+        - name: filters.modelVersion
+          in: query
+          description: Exact filter for model version
+          required: false
+          schema:
+            type: string
+        - name: filters.scoreDimension
+          in: query
+          description: Exact filter for score dimension
+          required: false
+          schema:
+            type: string
+            enum:
+              - FINANCIAL
+              - NON_FINANCIAL
+              - COMBINED
+              - BEHAVIORAL
+        - name: filters.modelApproach
+          in: query
+          description: Exact filter for model approach
+          required: false
+          schema:
+            type: string
+            enum:
+              - AI
+              - RULES_BASED
+              - HYBRID
+              - STATISTICAL
+        - name: filters.modelStatus
+          in: query
+          description: Exact filter for model status
+          required: false
+          schema:
+            type: string
+            enum:
+              - ACTIVE
+              - DEPRECATED
+              - TESTING
+              - DISABLED
+        - name: filters.note
+          in: query
+          description: Exact filter for note
+          required: false
+          schema:
+            type: string
+        - name: filters.createdAt
+          in: query
+          description: Exact filter for created at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].from
+          in: query
+          description: Filter created at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].to
+          in: query
+          description: Filter created at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: filters.updatedAt
+          in: query
+          description: Exact filter for updated at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].from
+          in: query
+          description: Filter updated at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].to
+          in: query
+          description: Filter updated at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaginationResponseScoringModelDTO'
+    post:
+      tags:
+        - ScoringModel
+      summary: Create a new scoring model
+      operationId: create
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringModelDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringModelDTO'
+  /api/v1/scoring-cases:
+    get:
+      tags:
+        - ScoringCase
+      summary: List or search scoring cases
+      operationId: findAll_1
+      parameters:
+        - name: pagination.pageNumber
+          in: query
+          description: Page number (0-based)
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pagination.pageSize
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: pagination.sortBy
+          in: query
+          description: Field to sort by
+          required: false
+          schema:
+            type: string
+        - name: pagination.sortDirection
+          in: query
+          description: Sort direction (ASC or DESC)
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: options.caseInsensitiveStrings
+          in: query
+          description: Enable case-insensitive string filtering
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: options.includeInheritedFields
+          in: query
+          description: Include fields from parent classes
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: filters.loanApplicationId
+          in: query
+          description: Exact filter for loan application id
+          required: false
+          schema:
+            type: string
+        - name: filters.customerId
+          in: query
+          description: Exact filter for customer id
+          required: false
+          schema:
+            type: string
+        - name: filters.caseStatus
+          in: query
+          description: Exact filter for case status
+          required: false
+          schema:
+            type: string
+            enum:
+              - OPEN
+              - COMPLETED
+              - FAILED
+              - CANCELLED
+        - name: filters.caseType
+          in: query
+          description: Exact filter for case type
+          required: false
+          schema:
+            type: string
+            enum:
+              - APPLICATION
+              - RE_SCORING
+              - PORTFOLIO_MONITOR
+              - PRE_APPROVAL
+        - name: filters.remarks
+          in: query
+          description: Exact filter for remarks
+          required: false
+          schema:
+            type: string
+        - name: filters.createdAt
+          in: query
+          description: Exact filter for created at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].from
+          in: query
+          description: Filter created at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].to
+          in: query
+          description: Filter created at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: filters.updatedAt
+          in: query
+          description: Exact filter for updated at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].from
+          in: query
+          description: Filter updated at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].to
+          in: query
+          description: Filter updated at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaginationResponseScoringCaseDTO'
+    post:
+      tags:
+        - ScoringCase
+      summary: Create a new scoring case
+      operationId: create_1
+      parameters:
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringCaseDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringCaseDTO'
+  /api/v1/scoring-cases/{scoringCaseId}/requests:
+    get:
+      tags:
+        - ScoringRequest
+      summary: List or search scoring requests for a scoring case
+      operationId: findAll_2
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: pagination.pageNumber
+          in: query
+          description: Page number (0-based)
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pagination.pageSize
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: pagination.sortBy
+          in: query
+          description: Field to sort by
+          required: false
+          schema:
+            type: string
+        - name: pagination.sortDirection
+          in: query
+          description: Sort direction (ASC or DESC)
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: options.caseInsensitiveStrings
+          in: query
+          description: Enable case-insensitive string filtering
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: options.includeInheritedFields
+          in: query
+          description: Include fields from parent classes
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: filters.scoringCaseId
+          in: query
+          description: Exact filter for scoring case id
+          required: false
+          schema:
+            type: string
+        - name: filters.scoringModelId
+          in: query
+          description: Exact filter for scoring model id
+          required: false
+          schema:
+            type: string
+        - name: filters.requestTimestamp
+          in: query
+          description: Exact filter for request timestamp
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[requestTimestamp].from
+          in: query
+          description: Filter request timestamp from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[requestTimestamp].to
+          in: query
+          description: Filter request timestamp to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: filters.requestStatus
+          in: query
+          description: Exact filter for request status
+          required: false
+          schema:
+            type: string
+            enum:
+              - COMPLETED
+              - FAILED
+              - PENDING
+              - IN_PROGRESS
+              - TIMEOUT
+        - name: filters.note
+          in: query
+          description: Exact filter for note
+          required: false
+          schema:
+            type: string
+        - name: filters.createdAt
+          in: query
+          description: Exact filter for created at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].from
+          in: query
+          description: Filter created at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].to
+          in: query
+          description: Filter created at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: filters.updatedAt
+          in: query
+          description: Exact filter for updated at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].from
+          in: query
+          description: Filter updated at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].to
+          in: query
+          description: Filter updated at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaginationResponseScoringRequestDTO'
+    post:
+      tags:
+        - ScoringRequest
+      summary: Create a new scoring request
+      operationId: create_2
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringRequestDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringRequestDTO'
+  /api/v1/scoring-cases/{scoringCaseId}/requests/{scoringRequestId}/results:
+    get:
+      tags:
+        - ScoringResult
+      summary: List or search scoring results for a request
+      operationId: findAll_3
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: pagination.pageNumber
+          in: query
+          description: Page number (0-based)
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pagination.pageSize
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: pagination.sortBy
+          in: query
+          description: Field to sort by
+          required: false
+          schema:
+            type: string
+        - name: pagination.sortDirection
+          in: query
+          description: Sort direction (ASC or DESC)
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: options.caseInsensitiveStrings
+          in: query
+          description: Enable case-insensitive string filtering
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: options.includeInheritedFields
+          in: query
+          description: Include fields from parent classes
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: filters.scoringRequestId
+          in: query
+          description: Exact filter for scoring request id
+          required: false
+          schema:
+            type: string
+        - name: filters.scoreValue
+          in: query
+          description: Exact filter for score value
+          required: false
+          schema:
+            type: string
+        - name: rangeFilters.ranges[scoreValue].from
+          in: query
+          description: Filter score value from value
+          required: false
+          schema:
+            type: string
+        - name: rangeFilters.ranges[scoreValue].to
+          in: query
+          description: Filter score value to value
+          required: false
+          schema:
+            type: string
+        - name: filters.scoreOutcome
+          in: query
+          description: Exact filter for score outcome
+          required: false
+          schema:
+            type: string
+            enum:
+              - APPROVE
+              - REJECT
+              - MANUAL_REVIEW
+              - REFER_TO_SUPERVISOR
+        - name: filters.reasonCodes
+          in: query
+          description: Exact filter for reason codes
+          required: false
+          schema:
+            type: string
+        - name: filters.extraDetails
+          in: query
+          description: Exact filter for extra details
+          required: false
+          schema:
+            type: string
+        - name: filters.createdAt
+          in: query
+          description: Exact filter for created at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].from
+          in: query
+          description: Filter created at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].to
+          in: query
+          description: Filter created at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: filters.updatedAt
+          in: query
+          description: Exact filter for updated at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].from
+          in: query
+          description: Filter updated at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].to
+          in: query
+          description: Filter updated at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaginationResponseScoringResultDTO'
+    post:
+      tags:
+        - ScoringResult
+      summary: Create a new scoring result
+      operationId: create_3
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: scoringRequestId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringResultDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringResultDTO'
+  /api/v1/scoring-cases/{scoringCaseId}/bureau-calls:
+    get:
+      tags:
+        - ScoringBureauCall
+      summary: List or search bureau calls for a scoring case
+      operationId: findAll_4
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: pagination.pageNumber
+          in: query
+          description: Page number (0-based)
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 0
+        - name: pagination.pageSize
+          in: query
+          description: Number of items per page
+          required: false
+          schema:
+            type: integer
+            format: int32
+            default: 10
+        - name: pagination.sortBy
+          in: query
+          description: Field to sort by
+          required: false
+          schema:
+            type: string
+        - name: pagination.sortDirection
+          in: query
+          description: Sort direction (ASC or DESC)
+          required: false
+          schema:
+            type: string
+            default: DESC
+        - name: options.caseInsensitiveStrings
+          in: query
+          description: Enable case-insensitive string filtering
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: options.includeInheritedFields
+          in: query
+          description: Include fields from parent classes
+          required: false
+          schema:
+            type: boolean
+            default: false
+        - name: filters.scoringCaseId
+          in: query
+          description: Exact filter for scoring case id
+          required: false
+          schema:
+            type: string
+        - name: filters.bureauName
+          in: query
+          description: Exact filter for bureau name
+          required: false
+          schema:
+            type: string
+            enum:
+              - AXESOR
+              - EQUIFAX
+              - EXPERIAN
+              - ASNEF
+              - OTHER
+        - name: filters.callDate
+          in: query
+          description: Exact filter for call date
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[callDate].from
+          in: query
+          description: Filter call date from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[callDate].to
+          in: query
+          description: Filter call date to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: filters.referenceCode
+          in: query
+          description: Exact filter for reference code
+          required: false
+          schema:
+            type: string
+        - name: filters.isSuccess
+          in: query
+          description: Exact filter for is success
+          required: false
+          schema:
+            type: boolean
+        - name: filters.rawResponse
+          in: query
+          description: Exact filter for raw response
+          required: false
+          schema:
+            type: string
+        - name: filters.note
+          in: query
+          description: Exact filter for note
+          required: false
+          schema:
+            type: string
+        - name: filters.createdAt
+          in: query
+          description: Exact filter for created at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].from
+          in: query
+          description: Filter created at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[createdAt].to
+          in: query
+          description: Filter created at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: filters.updatedAt
+          in: query
+          description: Exact filter for updated at
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].from
+          in: query
+          description: Filter updated at from value
+          required: false
+          schema:
+            type: string
+            format: date-time
+        - name: rangeFilters.ranges[updatedAt].to
+          in: query
+          description: Filter updated at to value
+          required: false
+          schema:
+            type: string
+            format: date-time
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PaginationResponseScoringBureauCallDTO'
+    post:
+      tags:
+        - ScoringBureauCall
+      summary: Create a new bureau call record
+      operationId: create_4
+      parameters:
+        - name: scoringCaseId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uuid
+        - name: X-Idempotency-Key
+          in: header
+          description: Unique key for idempotent requests. If provided, ensures that identical requests with the same key will only be processed once.
+          required: false
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScoringBureauCallDTO'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/ScoringBureauCallDTO'
+components:
+  schemas:
+    ScoringModelDTO:
+      required:
+        - modelApproach
+        - modelName
+        - modelStatus
+        - modelVersion
+        - scoreDimension
+      type: object
+      properties:
+        scoringModelId:
+          type: string
+          format: uuid
+          readOnly: true
+        modelName:
+          maxLength: 100
+          minLength: 2
+          type: string
+        modelVersion:
+          pattern: ^\d+\.\d+(\.\d+)?$
+          type: string
+        scoreDimension:
+          type: string
+          enum:
+            - FINANCIAL
+            - NON_FINANCIAL
+            - COMBINED
+            - BEHAVIORAL
+        modelApproach:
+          type: string
+          enum:
+            - AI
+            - RULES_BASED
+            - HYBRID
+            - STATISTICAL
+        modelStatus:
+          type: string
+          enum:
+            - ACTIVE
+            - DEPRECATED
+            - TESTING
+            - DISABLED
+        note:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+    ScoringCaseDTO:
+      required:
+        - caseStatus
+        - caseType
+        - customerId
+      type: object
+      properties:
+        scoringCaseId:
+          type: string
+          format: uuid
+          readOnly: true
+        loanApplicationId:
+          type: string
+          format: uuid
+        customerId:
+          type: string
+          format: uuid
+        caseStatus:
+          type: string
+          enum:
+            - OPEN
+            - COMPLETED
+            - FAILED
+            - CANCELLED
+        caseType:
+          type: string
+          enum:
+            - APPLICATION
+            - RE_SCORING
+            - PORTFOLIO_MONITOR
+            - PRE_APPROVAL
+        remarks:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+    ScoringRequestDTO:
+      required:
+        - requestStatus
+        - requestTimestamp
+        - scoringCaseId
+        - scoringModelId
+      type: object
+      properties:
+        scoringRequestId:
+          type: string
+          format: uuid
+          readOnly: true
+        scoringCaseId:
+          type: string
+          format: uuid
+        scoringModelId:
+          type: string
+          format: uuid
+        requestTimestamp:
+          type: string
+          format: date-time
+        requestStatus:
+          type: string
+          enum:
+            - COMPLETED
+            - FAILED
+            - PENDING
+            - IN_PROGRESS
+            - TIMEOUT
+        note:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+    ScoringResultDTO:
+      required:
+        - scoreOutcome
+        - scoreValue
+        - scoringRequestId
+      type: object
+      properties:
+        scoringResultId:
+          type: string
+          format: uuid
+          readOnly: true
+        scoringRequestId:
+          type: string
+          format: uuid
+        scoreValue:
+          maximum: 1
+          exclusiveMaximum: false
+          minimum: 0
+          exclusiveMinimum: false
+          type: number
+        scoreOutcome:
+          type: string
+          enum:
+            - APPROVE
+            - REJECT
+            - MANUAL_REVIEW
+            - REFER_TO_SUPERVISOR
+        reasonCodes:
+          maxLength: 2000
+          minLength: 0
+          type: string
+        extraDetails:
+          maxLength: 5000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+    ScoringBureauCallDTO:
+      required:
+        - bureauName
+        - callDate
+        - isSuccess
+        - referenceCode
+        - scoringCaseId
+      type: object
+      properties:
+        scoringBureauCallId:
+          type: string
+          format: uuid
+          readOnly: true
+        scoringCaseId:
+          type: string
+          format: uuid
+        bureauName:
+          type: string
+          enum:
+            - AXESOR
+            - EQUIFAX
+            - EXPERIAN
+            - ASNEF
+            - OTHER
+        callDate:
+          type: string
+          format: date-time
+        referenceCode:
+          maxLength: 100
+          minLength: 1
+          type: string
+        isSuccess:
+          type: boolean
+        rawResponse:
+          maxLength: 10000
+          minLength: 0
+          type: string
+        note:
+          maxLength: 1000
+          minLength: 0
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+    PaginationResponseScoringModelDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: '#/components/schemas/ScoringModelDTO'
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: The current page number, typically zero-based.
+          format: int32
+      description: Represents a paginated response containing a list of items and pagination metadata.
+    PaginationResponseScoringCaseDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: '#/components/schemas/ScoringCaseDTO'
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: The current page number, typically zero-based.
+          format: int32
+      description: Represents a paginated response containing a list of items and pagination metadata.
+    PaginationResponseScoringRequestDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: '#/components/schemas/ScoringRequestDTO'
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: The current page number, typically zero-based.
+          format: int32
+      description: Represents a paginated response containing a list of items and pagination metadata.
+    PaginationResponseScoringResultDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: '#/components/schemas/ScoringResultDTO'
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: The current page number, typically zero-based.
+          format: int32
+      description: Represents a paginated response containing a list of items and pagination metadata.
+    PaginationResponseScoringBureauCallDTO:
+      type: object
+      properties:
+        content:
+          type: array
+          description: The list of items for the current page.
+          items:
+            $ref: '#/components/schemas/ScoringBureauCallDTO'
+        totalElements:
+          type: integer
+          description: The total number of elements across all pages.
+          format: int64
+        totalPages:
+          type: integer
+          description: The total number of pages based on the data size and page size.
+          format: int32
+        currentPage:
+          type: integer
+          description: The current page number, typically zero-based.
+          format: int32
+      description: Represents a paginated response containing a list of items and pagination metadata.
