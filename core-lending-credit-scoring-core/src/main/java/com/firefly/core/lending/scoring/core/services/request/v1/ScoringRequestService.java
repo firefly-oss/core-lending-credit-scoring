@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.scoring.interfaces.dtos.request.v1.ScoringRequestDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface ScoringRequestService {
 
     /**
@@ -15,7 +17,7 @@ public interface ScoringRequestService {
      * @param filterRequest the filtering criteria used for retrieving the scoring requests, encapsulated within a FilterRequest object
      * @return a Mono emitting a PaginationResponse containing the filtered list of ScoringRequestDTO objects
      */
-    Mono<PaginationResponse<ScoringRequestDTO>> findAll(Long scoringCaseId,
+    Mono<PaginationResponse<ScoringRequestDTO>> findAll(UUID scoringCaseId,
                                                         FilterRequest<ScoringRequestDTO> filterRequest);
 
     /**
@@ -25,7 +27,7 @@ public interface ScoringRequestService {
      * @param dto the ScoringRequestDTO object containing the details of the scoring request to be created
      * @return a Mono emitting the created ScoringRequestDTO object
      */
-    Mono<ScoringRequestDTO> create(Long scoringCaseId, ScoringRequestDTO dto);
+    Mono<ScoringRequestDTO> create(UUID scoringCaseId, ScoringRequestDTO dto);
 
     /**
      * Retrieves a ScoringRequestDTO based on the provided scoring case ID and scoring request ID.
@@ -34,7 +36,7 @@ public interface ScoringRequestService {
      * @param scoringRequestId the unique identifier of the specific scoring request to retrieve
      * @return a Mono emitting the ScoringRequestDTO corresponding to the provided identifiers, or an empty Mono if not found
      */
-    Mono<ScoringRequestDTO> getById(Long scoringCaseId, Long scoringRequestId);
+    Mono<ScoringRequestDTO> getById(UUID scoringCaseId, UUID scoringRequestId);
 
     /**
      * Updates an existing scoring request identified by the scoring case ID and scoring request ID
@@ -45,7 +47,7 @@ public interface ScoringRequestService {
      * @param dto the updated details of the scoring request, encapsulated in a ScoringRequestDTO object
      * @return a Mono emitting the updated ScoringRequestDTO if the update operation succeeds
      */
-    Mono<ScoringRequestDTO> update(Long scoringCaseId, Long scoringRequestId, ScoringRequestDTO dto);
+    Mono<ScoringRequestDTO> update(UUID scoringCaseId, UUID scoringRequestId, ScoringRequestDTO dto);
 
     /**
      * Deletes a specific scoring request identified by its unique identifiers for the scoring case and scoring request.
@@ -54,5 +56,5 @@ public interface ScoringRequestService {
      * @param scoringRequestId the unique identifier of the scoring request to be deleted
      * @return a Mono that completes with no value if the deletion is successful
      */
-    Mono<Void> delete(Long scoringCaseId, Long scoringRequestId);
+    Mono<Void> delete(UUID scoringCaseId, UUID scoringRequestId);
 }

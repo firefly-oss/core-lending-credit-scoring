@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.scoring.interfaces.dtos.result.v1.ScoringResultDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface ScoringResultService {
 
     /**
@@ -16,7 +18,7 @@ public interface ScoringResultService {
      * @param filterRequest the filtering criteria used for retrieving the scoring results, encapsulated within a FilterRequest object
      * @return a Mono emitting a PaginationResponse containing the filtered list of ScoringResultDTO objects
      */
-    Mono<PaginationResponse<ScoringResultDTO>> findAll(Long scoringCaseId, Long scoringRequestId,
+    Mono<PaginationResponse<ScoringResultDTO>> findAll(UUID scoringCaseId, UUID scoringRequestId,
                                                        FilterRequest<ScoringResultDTO> filterRequest);
 
     /**
@@ -27,7 +29,7 @@ public interface ScoringResultService {
      * @param dto the ScoringResultDTO object containing the details of the scoring result to be created
      * @return a Mono emitting the created ScoringResultDTO object
      */
-    Mono<ScoringResultDTO> create(Long scoringCaseId, Long scoringRequestId, ScoringResultDTO dto);
+    Mono<ScoringResultDTO> create(UUID scoringCaseId, UUID scoringRequestId, ScoringResultDTO dto);
 
     /**
      * Retrieves a specific ScoringResultDTO based on the provided scoring case ID, scoring request ID,
@@ -38,7 +40,7 @@ public interface ScoringResultService {
      * @param scoringResultId the unique identifier of the scoring result to be retrieved
      * @return a Mono emitting the ScoringResultDTO corresponding to the provided identifiers, or an empty Mono if not found
      */
-    Mono<ScoringResultDTO> getById(Long scoringCaseId, Long scoringRequestId, Long scoringResultId);
+    Mono<ScoringResultDTO> getById(UUID scoringCaseId, UUID scoringRequestId, UUID scoringResultId);
 
     /**
      * Updates an existing scoring result identified by the given scoring case ID, scoring request ID,
@@ -50,7 +52,7 @@ public interface ScoringResultService {
      * @param dto the updated details of the scoring result, encapsulated in a ScoringResultDTO object
      * @return a Mono emitting the updated ScoringResultDTO if the update operation succeeds
      */
-    Mono<ScoringResultDTO> update(Long scoringCaseId, Long scoringRequestId, Long scoringResultId,
+    Mono<ScoringResultDTO> update(UUID scoringCaseId, UUID scoringRequestId, UUID scoringResultId,
                                   ScoringResultDTO dto);
 
     /**
@@ -62,5 +64,5 @@ public interface ScoringResultService {
      * @param scoringResultId the unique identifier of the scoring result to be deleted
      * @return a Mono that completes with no value upon successful deletion
      */
-    Mono<Void> delete(Long scoringCaseId, Long scoringRequestId, Long scoringResultId);
+    Mono<Void> delete(UUID scoringCaseId, UUID scoringRequestId, UUID scoringResultId);
 }

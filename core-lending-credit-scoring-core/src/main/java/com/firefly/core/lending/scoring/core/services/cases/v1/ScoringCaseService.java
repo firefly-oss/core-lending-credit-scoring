@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.scoring.interfaces.dtos.cases.v1.ScoringCaseDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface ScoringCaseService {
 
     /**
@@ -30,7 +32,7 @@ public interface ScoringCaseService {
      * @param scoringCaseId the unique identifier of the scoring case to be retrieved
      * @return a Mono emitting the ScoringCaseDTO corresponding to the provided identifier, or an empty Mono if not found
      */
-    Mono<ScoringCaseDTO> getById(Long scoringCaseId);
+    Mono<ScoringCaseDTO> getById(UUID scoringCaseId);
 
     /**
      * Updates an existing scoring case with the provided information.
@@ -39,7 +41,7 @@ public interface ScoringCaseService {
      * @param dto the details of the scoring case to be updated, encapsulated in a ScoringCaseDTO object
      * @return a Mono emitting the updated ScoringCaseDTO if the operation is successful
      */
-    Mono<ScoringCaseDTO> update(Long scoringCaseId, ScoringCaseDTO dto);
+    Mono<ScoringCaseDTO> update(UUID scoringCaseId, ScoringCaseDTO dto);
 
     /**
      * Deletes a scoring case by its unique identifier.
@@ -47,5 +49,5 @@ public interface ScoringCaseService {
      * @param scoringCaseId the unique identifier of the scoring case to be deleted
      * @return a Mono that completes with no value if the operation is successful
      */
-    Mono<Void> delete(Long scoringCaseId);
+    Mono<Void> delete(UUID scoringCaseId);
 }

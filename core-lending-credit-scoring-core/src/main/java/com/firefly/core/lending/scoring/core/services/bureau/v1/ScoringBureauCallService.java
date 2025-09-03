@@ -5,6 +5,8 @@ import com.firefly.common.core.queries.PaginationResponse;
 import com.firefly.core.lending.scoring.interfaces.dtos.bureau.v1.ScoringBureauCallDTO;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 public interface ScoringBureauCallService {
 
     /**
@@ -16,7 +18,7 @@ public interface ScoringBureauCallService {
      *                      a FilterRequest object
      * @return a Mono emitting a PaginationResponse containing the filtered list of ScoringBureauCallDTO objects
      */
-    Mono<PaginationResponse<ScoringBureauCallDTO>> findAll(Long scoringCaseId,
+    Mono<PaginationResponse<ScoringBureauCallDTO>> findAll(UUID scoringCaseId,
                                                            FilterRequest<ScoringBureauCallDTO> filterRequest);
 
     /**
@@ -26,7 +28,7 @@ public interface ScoringBureauCallService {
      * @param dto the ScoringBureauCallDTO object containing the details of the bureau call to be created
      * @return a Mono emitting the created ScoringBureauCallDTO object
      */
-    Mono<ScoringBureauCallDTO> create(Long scoringCaseId, ScoringBureauCallDTO dto);
+    Mono<ScoringBureauCallDTO> create(UUID scoringCaseId, ScoringBureauCallDTO dto);
 
     /**
      * Retrieves a ScoringBureauCallDTO by its unique identifiers for the scoring case and the bureau call.
@@ -35,7 +37,7 @@ public interface ScoringBureauCallService {
      * @param scoringBureauCallId the unique identifier of the specific scoring bureau call to retrieve
      * @return a Mono emitting the ScoringBureauCallDTO corresponding to the provided identifiers, or an empty Mono if not found
      */
-    Mono<ScoringBureauCallDTO> getById(Long scoringCaseId, Long scoringBureauCallId);
+    Mono<ScoringBureauCallDTO> getById(UUID scoringCaseId, UUID scoringBureauCallId);
 
     /**
      * Updates an existing scoring bureau call identified by its unique IDs with the provided data.
@@ -45,7 +47,7 @@ public interface ScoringBureauCallService {
      * @param dto the updated details of the scoring bureau call, encapsulated in a ScoringBureauCallDTO object
      * @return a Mono emitting the updated ScoringBureauCallDTO if the operation is successful
      */
-    Mono<ScoringBureauCallDTO> update(Long scoringCaseId, Long scoringBureauCallId, ScoringBureauCallDTO dto);
+    Mono<ScoringBureauCallDTO> update(UUID scoringCaseId, UUID scoringBureauCallId, ScoringBureauCallDTO dto);
 
     /**
      * Deletes a specific scoring bureau call associated with a given scoring case.
@@ -54,5 +56,5 @@ public interface ScoringBureauCallService {
      * @param scoringBureauCallId the unique identifier of the scoring bureau call to be deleted
      * @return a Mono that completes with no value if the deletion is successful
      */
-    Mono<Void> delete(Long scoringCaseId, Long scoringBureauCallId);
+    Mono<Void> delete(UUID scoringCaseId, UUID scoringBureauCallId);
 }

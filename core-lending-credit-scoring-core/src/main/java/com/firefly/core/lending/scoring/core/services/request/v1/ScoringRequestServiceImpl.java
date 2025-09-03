@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class ScoringRequestServiceImpl implements ScoringRequestService {
@@ -23,7 +25,7 @@ public class ScoringRequestServiceImpl implements ScoringRequestService {
     private ScoringRequestMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<ScoringRequestDTO>> findAll(Long scoringCaseId, FilterRequest<ScoringRequestDTO> filterRequest) {
+    public Mono<PaginationResponse<ScoringRequestDTO>> findAll(UUID scoringCaseId, FilterRequest<ScoringRequestDTO> filterRequest) {
         filterRequest.getFilters().setScoringCaseId(scoringCaseId);
         return FilterUtils.createFilter(
                 ScoringRequest.class,
@@ -32,7 +34,7 @@ public class ScoringRequestServiceImpl implements ScoringRequestService {
     }
 
     @Override
-    public Mono<ScoringRequestDTO> create(Long scoringCaseId, ScoringRequestDTO dto) {
+    public Mono<ScoringRequestDTO> create(UUID scoringCaseId, ScoringRequestDTO dto) {
         dto.setScoringCaseId(scoringCaseId);
         ScoringRequest entity = mapper.toEntity(dto);
         return repository.save(entity)
@@ -40,14 +42,14 @@ public class ScoringRequestServiceImpl implements ScoringRequestService {
     }
 
     @Override
-    public Mono<ScoringRequestDTO> getById(Long scoringCaseId, Long scoringRequestId) {
+    public Mono<ScoringRequestDTO> getById(UUID scoringCaseId, UUID scoringRequestId) {
         return repository.findById(scoringRequestId)
                 .filter(entity -> scoringCaseId.equals(entity.getScoringCaseId()))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<ScoringRequestDTO> update(Long scoringCaseId, Long scoringRequestId, ScoringRequestDTO dto) {
+    public Mono<ScoringRequestDTO> update(UUID scoringCaseId, UUID scoringRequestId, ScoringRequestDTO dto) {
         return repository.findById(scoringRequestId)
                 .filter(entity -> scoringCaseId.equals(entity.getScoringCaseId()))
                 .map(existingEntity -> {
@@ -60,7 +62,7 @@ public class ScoringRequestServiceImpl implements ScoringRequestService {
     }
 
     @Override
-    public Mono<Void> delete(Long scoringCaseId, Long scoringRequestId) {
+    public Mono<Void> delete(UUID scoringCaseId, UUID scoringRequestId) {
         return repository.findById(scoringRequestId)
                 .filter(entity -> scoringCaseId.equals(entity.getScoringCaseId()))
                 .flatMap(repository::delete)

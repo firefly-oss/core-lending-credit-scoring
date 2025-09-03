@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class ScoringBureauCallServiceImpl implements ScoringBureauCallService {
@@ -23,7 +25,7 @@ public class ScoringBureauCallServiceImpl implements ScoringBureauCallService {
     private ScoringBureauCallMapper mapper;
 
     @Override
-    public Mono<PaginationResponse<ScoringBureauCallDTO>> findAll(Long scoringCaseId, FilterRequest<ScoringBureauCallDTO> filterRequest) {
+    public Mono<PaginationResponse<ScoringBureauCallDTO>> findAll(UUID scoringCaseId, FilterRequest<ScoringBureauCallDTO> filterRequest) {
         filterRequest.getFilters().setScoringCaseId(scoringCaseId);
         return FilterUtils.createFilter(
                 ScoringBureauCall.class,
@@ -32,7 +34,7 @@ public class ScoringBureauCallServiceImpl implements ScoringBureauCallService {
     }
 
     @Override
-    public Mono<ScoringBureauCallDTO> create(Long scoringCaseId, ScoringBureauCallDTO dto) {
+    public Mono<ScoringBureauCallDTO> create(UUID scoringCaseId, ScoringBureauCallDTO dto) {
         dto.setScoringCaseId(scoringCaseId);
         ScoringBureauCall entity = mapper.toEntity(dto);
         return repository.save(entity)
@@ -40,14 +42,14 @@ public class ScoringBureauCallServiceImpl implements ScoringBureauCallService {
     }
 
     @Override
-    public Mono<ScoringBureauCallDTO> getById(Long scoringCaseId, Long scoringBureauCallId) {
+    public Mono<ScoringBureauCallDTO> getById(UUID scoringCaseId, UUID scoringBureauCallId) {
         return repository.findById(scoringBureauCallId)
                 .filter(entity -> entity.getScoringCaseId().equals(scoringCaseId))
                 .map(mapper::toDTO);
     }
 
     @Override
-    public Mono<ScoringBureauCallDTO> update(Long scoringCaseId, Long scoringBureauCallId, ScoringBureauCallDTO dto) {
+    public Mono<ScoringBureauCallDTO> update(UUID scoringCaseId, UUID scoringBureauCallId, ScoringBureauCallDTO dto) {
         return repository.findById(scoringBureauCallId)
                 .filter(entity -> entity.getScoringCaseId().equals(scoringCaseId))
                 .flatMap(entity -> {
@@ -60,7 +62,7 @@ public class ScoringBureauCallServiceImpl implements ScoringBureauCallService {
     }
 
     @Override
-    public Mono<Void> delete(Long scoringCaseId, Long scoringBureauCallId) {
+    public Mono<Void> delete(UUID scoringCaseId, UUID scoringBureauCallId) {
         return repository.findById(scoringBureauCallId)
                 .filter(entity -> entity.getScoringCaseId().equals(scoringCaseId))
                 .flatMap(repository::delete)

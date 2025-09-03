@@ -12,6 +12,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import reactor.core.publisher.Mono;
 
+import java.util.UUID;
+
 @Service
 @Transactional
 public class ScoringModelServiceImpl implements ScoringModelService {
@@ -39,14 +41,14 @@ public class ScoringModelServiceImpl implements ScoringModelService {
     }
 
     @Override
-    public Mono<ScoringModelDTO> getById(Long scoringModelId) {
+    public Mono<ScoringModelDTO> getById(UUID scoringModelId) {
         return repository.findById(scoringModelId)
                 .map(mapper::toDTO)
                 .switchIfEmpty(Mono.empty());
     }
 
     @Override
-    public Mono<ScoringModelDTO> update(Long scoringModelId, ScoringModelDTO dto) {
+    public Mono<ScoringModelDTO> update(UUID scoringModelId, ScoringModelDTO dto) {
         return repository.findById(scoringModelId)
                 .flatMap(existingEntity -> {
                     ScoringModel updatedEntity = mapper.toEntity(dto);
@@ -57,7 +59,7 @@ public class ScoringModelServiceImpl implements ScoringModelService {
     }
 
     @Override
-    public Mono<Void> delete(Long scoringModelId) {
+    public Mono<Void> delete(UUID scoringModelId) {
         return repository.findById(scoringModelId)
                 .flatMap(repository::delete);
     }
