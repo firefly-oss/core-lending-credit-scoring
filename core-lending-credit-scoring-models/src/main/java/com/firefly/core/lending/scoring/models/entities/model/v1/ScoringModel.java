@@ -12,6 +12,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -22,7 +23,7 @@ public class ScoringModel {
 
     @Id
     @Column("scoring_model_id")
-    private Long scoringModelId;
+    private UUID scoringModelId;
 
     @Column("model_name")
     private String modelName;

@@ -11,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -21,13 +22,13 @@ public class ScoringCase {
 
     @Id
     @Column("scoring_case_id")
-    private Long scoringCaseId;
+    private UUID scoringCaseId;
 
     @Column("loan_application_id")
-    private Long loanApplicationId; // External reference (no direct FK)
+    private UUID loanApplicationId; // External reference (no direct FK)
 
     @Column("customer_id")
-    private Long customerId;        // External reference (no direct FK)
+    private UUID customerId;        // External reference (no direct FK)
 
     @Column("case_status")
     private CaseStatusEnum caseStatus;

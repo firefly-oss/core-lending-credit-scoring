@@ -10,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -20,10 +21,10 @@ public class ScoringBureauCall {
 
     @Id
     @Column("scoring_bureau_call_id")
-    private Long scoringBureauCallId;
+    private UUID scoringBureauCallId;
 
     @Column("scoring_case_id")
-    private Long scoringCaseId;     // References ScoringCase
+    private UUID scoringCaseId;     // References ScoringCase
 
     @Column("bureau_name")
     private BureauNameEnum bureauName;

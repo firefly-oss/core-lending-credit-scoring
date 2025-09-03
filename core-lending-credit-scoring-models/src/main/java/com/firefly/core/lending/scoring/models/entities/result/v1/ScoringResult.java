@@ -11,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -21,10 +22,10 @@ public class ScoringResult {
 
     @Id
     @Column("scoring_result_id")
-    private Long scoringResultId;
+    private UUID scoringResultId;
 
     @Column("scoring_request_id")
-    private Long scoringRequestId;   // References ScoringRequest
+    private UUID scoringRequestId;   // References ScoringRequest
 
     @Column("score_value")
     private BigDecimal scoreValue;   // e.g. Probability of Default or raw score

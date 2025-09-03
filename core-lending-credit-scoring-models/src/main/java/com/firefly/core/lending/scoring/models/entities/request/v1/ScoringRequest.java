@@ -10,6 +10,7 @@ import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 @Builder
@@ -20,13 +21,13 @@ public class ScoringRequest {
 
     @Id
     @Column("scoring_request_id")
-    private Long scoringRequestId;
+    private UUID scoringRequestId;
 
     @Column("scoring_case_id")
-    private Long scoringCaseId;     // FK to ScoringCase
+    private UUID scoringCaseId;     // FK to ScoringCase
 
     @Column("scoring_model_id")
-    private Long scoringModelId;    // FK to ScoringModel
+    private UUID scoringModelId;    // FK to ScoringModel
 
     @Column("request_timestamp")
     private LocalDateTime requestTimestamp;
