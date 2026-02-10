@@ -1,7 +1,7 @@
 # Core Lending Credit Scoring Service
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://openjdk.org/projects/jdk/21/)
+[![Java](https://img.shields.io/badge/Java-25-orange.svg)](https://openjdk.org/projects/jdk/25/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.x-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Maven](https://img.shields.io/badge/Maven-3.8+-blue.svg)](https://maven.apache.org/)
 [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-13+-blue.svg)](https://www.postgresql.org/)
@@ -10,19 +10,19 @@
 
 The **Core Lending Credit Scoring Service** is a reactive microservice component of the **Firefly OpenCore Banking Platform**, developed by **Firefly Software Solutions Inc** under the Apache 2.0 license. This service provides comprehensive credit scoring functionality for lending applications, managing the complete lifecycle of credit assessments through sophisticated scoring models, case management, and external bureau integrations.
 
-**🌐 Organization Website**: [getfirefly.io](https://getfirefly.io)  
-**📂 GitHub Organization**: [firefly-oss](https://github.com/firefly-oss)  
-**📄 License**: Apache License 2.0
+**Organization Website**: [getfirefly.io](https://getfirefly.io)  
+**GitHub Organization**: [firefly-oss](https://github.com/firefly-oss)  
+**License**: Apache License 2.0
 
 ### Key Features
 
-- 🎯 **Advanced Credit Scoring Models** - Support for AI, rule-based, hybrid, and statistical approaches
-- 📋 **Case Management** - Complete lifecycle management of credit scoring cases
-- 🔄 **Reactive Architecture** - Built with Spring WebFlux for high-performance, non-blocking operations
-- 🏢 **Bureau Integration** - Seamless integration with multiple credit bureaus (Equifax, Experian, ASNEF, etc.)
-- 📊 **Comprehensive Results** - Detailed scoring outcomes with reason codes and explanations
-- 🔍 **Advanced Filtering** - Sophisticated search and pagination capabilities
-- 📈 **Production Ready** - Built-in monitoring, health checks, and observability
+- **Advanced Credit Scoring Models** - Support for AI, rule-based, hybrid, and statistical approaches
+- **Case Management** - Complete lifecycle management of credit scoring cases
+- **Reactive Architecture** - Built with Spring WebFlux for high-performance, non-blocking operations
+- **Bureau Integration** - Seamless integration with multiple credit bureaus (Equifax, Experian, ASNEF, etc.)
+- **Comprehensive Results** - Detailed scoring outcomes with reason codes and explanations
+- **Advanced Filtering** - Sophisticated search and pagination capabilities
+- **Production Ready** - Built-in monitoring, health checks, and observability
 
 ## Entity Relationship Diagram
 
@@ -151,23 +151,23 @@ The service follows a layered architecture with the following modules:
 
 ### Technology Stack
 
-- **☕ Java 21** - Latest LTS with Virtual Threads support
-- **🍃 Spring Boot 3.x** - Application framework with reactive support
-- **⚡ Spring WebFlux** - Reactive web framework for non-blocking I/O
-- **🗄️ R2DBC PostgreSQL** - Reactive database connectivity
-- **🐘 PostgreSQL** - Primary database for data persistence
-- **🦋 Flyway** - Database schema migration tool
-- **📚 SpringDoc OpenAPI** - API documentation generation
-- **🔧 Maven** - Build tool and dependency management
-- **📊 Spring Boot Actuator** - Production monitoring and health checks
-- **🗺️ MapStruct** - Type-safe bean mapping
-- **✅ Jakarta Validation** - Bean validation with custom validators
+- **Java 25** - Latest LTS with Virtual Threads support
+- **Spring Boot 3.x** - Application framework with reactive support
+- **Spring WebFlux** - Reactive web framework for non-blocking I/O
+- **R2DBC PostgreSQL** - Reactive database connectivity
+- **PostgreSQL** - Primary database for data persistence
+- **Flyway** - Database schema migration tool
+- **SpringDoc OpenAPI** - API documentation generation
+- **Maven** - Build tool and dependency management
+- **Spring Boot Actuator** - Production monitoring and health checks
+- **MapStruct** - Type-safe bean mapping
+- **Jakarta Validation** - Bean validation with custom validators
 
 ## Getting Started
 
 ### Prerequisites
 
-- **Java 21+** (OpenJDK or Oracle JDK)
+- **Java 25+** (OpenJDK or Oracle JDK)
 - **Maven 3.8+**
 - **PostgreSQL 13+**
 - **Docker** (optional, for containerized deployment)
@@ -264,28 +264,28 @@ The service provides a comprehensive REST API organized hierarchically:
 
 ### Key Resources
 
-1. **📋 Scoring Cases** - Main containers for credit scoring operations
+1. **Scoring Cases** - Main containers for credit scoring operations
    - Manage case lifecycle and status (`OPEN`, `COMPLETED`, `FAILED`, `CANCELLED`)
    - Link to external loan applications and customers via UUIDs
    - Support different case types (`APPLICATION`, `RE_SCORING`, `PORTFOLIO_MONITOR`, `PRE_APPROVAL`)
 
-2. **🎯 Scoring Models** - Configurable scoring algorithms
+2. **Scoring Models** - Configurable scoring algorithms
    - Support multiple approaches (`AI`, `RULES_BASED`, `HYBRID`, `STATISTICAL`)
    - Versioned model management with semantic versioning
    - Various score dimensions (`FINANCIAL`, `NON_FINANCIAL`, `COMBINED`, `BEHAVIORAL`)
    - Model status management (`ACTIVE`, `DEPRECATED`, `TESTING`, `DISABLED`)
 
-3. **📨 Scoring Requests** - Individual scoring operations
+3. **Scoring Requests** - Individual scoring operations
    - Link cases with specific models
    - Track request status (`COMPLETED`, `FAILED`, `PENDING`, `IN_PROGRESS`, `TIMEOUT`)
    - Support batch and real-time processing
 
-4. **📊 Scoring Results** - Computed scores and outcomes
+4. **Scoring Results** - Computed scores and outcomes
    - Numerical scores with configurable precision (DECIMAL 9,4)
    - Categorical outcomes (`APPROVE`, `REJECT`, `MANUAL_REVIEW`, `REFER_TO_SUPERVISOR`)
    - Reason codes and detailed explanations in JSON format
 
-5. **📞 Bureau Calls** - External credit bureau integrations
+5. **Bureau Calls** - External credit bureau integrations
    - Track bureau API calls and responses
    - Support multiple bureau providers (`AXESOR`, `EQUIFAX`, `EXPERIAN`, `ASNEF`, `OTHER`)
    - Audit trail for regulatory compliance with success/failure tracking
@@ -294,8 +294,8 @@ The service provides a comprehensive REST API organized hierarchically:
 
 When the application is running:
 
-- **📖 Swagger UI**: `http://localhost:8080/swagger-ui.html`
-- **📄 OpenAPI Spec**: `http://localhost:8080/v3/api-docs`
+- **Swagger UI**: `http://localhost:8080/swagger-ui.html`
+- **OpenAPI Spec**: `http://localhost:8080/v3/api-docs`
 
 ### Authentication & Authorization
 
@@ -303,30 +303,30 @@ When the application is running:
 
 ### Request/Response Features
 
-- **🔄 Reactive Streams**: All endpoints return `Mono<T>` or `Flux<T>` for non-blocking operations
-- **📄 Pagination**: Built-in pagination support with `PaginationResponse<T>`
-- **🔍 Filtering**: Advanced filtering capabilities using `FilterRequest<T>`
-- **✅ Validation**: Comprehensive input validation with Jakarta Validation
-- **🔑 Idempotency**: Support for idempotent operations via `X-Idempotency-Key` header
-- **📊 Error Handling**: Standardized error responses with proper HTTP status codes
+- **Reactive Streams**: All endpoints return `Mono<T>` or `Flux<T>` for non-blocking operations
+- **Pagination**: Built-in pagination support with `PaginationResponse<T>`
+- **Filtering**: Advanced filtering capabilities using `FilterRequest<T>`
+- **Validation**: Comprehensive input validation with Jakarta Validation
+- **Idempotency**: Support for idempotent operations via `X-Idempotency-Key` header
+- **Error Handling**: Standardized error responses with proper HTTP status codes
 
 ## Configuration Profiles
 
 The application supports multiple deployment profiles:
 
-### 🛠️ Development (`dev`)
+### Development (`dev`)
 - Enhanced logging for debugging (`DEBUG` level for Firefly packages)
 - Swagger UI enabled
 - Database query logging active
 - R2DBC query logging enabled
 
-### 🧪 Testing (`testing`)
+### Testing (`testing`)
 - Moderate logging levels (`INFO` for most, `DEBUG` for Firefly)
 - API documentation enabled
 - Optimized for test execution
 - R2DBC query logging disabled for performance
 
-### 🚀 Production (`prod`)
+### Production (`prod`)
 - Minimal logging for performance (`WARN` for root, `INFO` for Firefly)
 - Swagger UI disabled for security
 - Health checks and metrics only
@@ -341,9 +341,9 @@ java -jar target/core-lending-credit-scoring-web.jar --spring.profiles.active=pr
 
 ### Health Endpoints
 
-- **❤️ Health Check**: `GET /actuator/health`
-- **ℹ️ Application Info**: `GET /actuator/info`
-- **📈 Prometheus Metrics**: `GET /actuator/prometheus`
+- **Health Check**: `GET /actuator/health`
+- **Application Info**: `GET /actuator/info`
+- **Prometheus Metrics**: `GET /actuator/prometheus`
 
 ### Health Check Response
 ```json
@@ -399,29 +399,29 @@ mvn test
 
 ## Performance Considerations
 
-- **🔄 Reactive Streams**: Non-blocking I/O throughout the stack using Spring WebFlux
-- **🧵 Virtual Threads**: Java 21 virtual threads enabled for improved concurrency
-- **💾 Connection Pooling**: Optimized R2DBC connection pool configuration (5-10 connections)
-- **📊 Database Indexing**: Strategic indexes on frequently queried columns
-- **⚡ Lazy Loading**: Efficient data loading patterns with reactive repositories
+- **Reactive Streams**: Non-blocking I/O throughout the stack using Spring WebFlux
+- **Virtual Threads**: Java 25 virtual threads enabled for improved concurrency
+- **Connection Pooling**: Optimized R2DBC connection pool configuration (5-10 connections)
+- **Database Indexing**: Strategic indexes on frequently queried columns
+- **Lazy Loading**: Efficient data loading patterns with reactive repositories
 
 ## Security Features
 
-- **🔒 SQL Injection Prevention**: Parameterized queries and R2DBC protection
-- **📝 Audit Logging**: Comprehensive audit trail for all operations via timestamps
-- **🏥 Health Check Security**: Limited exposure of sensitive information
-- **🔐 Data Validation**: Input validation at API and service layers using Jakarta Validation
-- **🛡️ Enum Constraints**: Database-level enum constraints prevent invalid data
+- **SQL Injection Prevention**: Parameterized queries and R2DBC protection
+- **Audit Logging**: Comprehensive audit trail for all operations via timestamps
+- **Health Check Security**: Limited exposure of sensitive information
+- **Data Validation**: Input validation at API and service layers using Jakarta Validation
+- **Enum Constraints**: Database-level enum constraints prevent invalid data
 
 ## Integration Points
 
 This microservice integrates with other Firefly OpenCore Banking Platform components:
 
-- **🏦 Core Banking System**: Customer and loan application data via external UUID references
-- **🌐 API Gateway**: Authentication, rate limiting, and routing
-- **📊 Data Analytics Platform**: Scoring model training and validation
-- **🏢 Credit Bureau APIs**: External credit data providers (Equifax, Experian, ASNEF, etc.)
-- **📈 Monitoring Stack**: Prometheus metrics and health check integration
+- **Core Banking System**: Customer and loan application data via external UUID references
+- **API Gateway**: Authentication, rate limiting, and routing
+- **Data Analytics Platform**: Scoring model training and validation
+- **Credit Bureau APIs**: External credit data providers (Equifax, Experian, ASNEF, etc.)
+- **Monitoring Stack**: Prometheus metrics and health check integration
 
 ## Contributing
 
@@ -445,10 +445,10 @@ We welcome contributions to the Firefly OpenCore Banking Platform! Please read o
 
 ## Support & Contact
 
-- **🌐 Website**: [getfirefly.io](https://getfirefly.io)
-- **📧 Development Team**: dev@getfirefly.io
-- **📋 Issues**: [GitHub Issues](https://github.com/firefly-oss/core-lending-credit-scoring/issues)
-- **📖 Documentation**: [Firefly OpenCore Docs](https://docs.getfirefly.io)
+- **Website**: [getfirefly.io](https://getfirefly.io)
+- **Development Team**: dev@getfirefly.io
+- **Issues**: [GitHub Issues](https://github.com/firefly-oss/core-lending-credit-scoring/issues)
+- **Documentation**: [Firefly OpenCore Docs](https://docs.getfirefly.io)
 
 ## License
 
@@ -456,6 +456,6 @@ This project is licensed under the **Apache License 2.0** - see the [LICENSE](LI
 
 ---
 
-**🔥 Firefly OpenCore Banking Platform** - Building the future of open banking technology.
+**Firefly OpenCore Banking Platform** - Building the future of open banking technology.
 
-*Copyright © 2024 Firefly Software Solutions Inc. All rights reserved.*
+*Copyright 2024 Firefly Software Solutions Inc. All rights reserved.*
