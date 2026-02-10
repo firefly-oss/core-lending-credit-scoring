@@ -17,8 +17,8 @@
 
 package com.firefly.core.lending.scoring.core.services.model.v1;
 
-import com.firefly.common.core.filters.FilterRequest;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.filters.FilterRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.lending.scoring.interfaces.dtos.model.v1.ScoringModelDTO;
 import reactor.core.publisher.Mono;
 

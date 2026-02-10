@@ -18,7 +18,7 @@
 package com.firefly.core.lending.scoring.interfaces.dtos.bureau.v1;
 
 import com.firefly.core.lending.scoring.interfaces.enums.bureau.v1.BureauNameEnum;
-import com.firefly.core.utils.annotations.FilterableId;
+import org.fireflyframework.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -17,9 +17,9 @@
 
 package com.firefly.core.lending.scoring.core.services.bureau.v1;
 
-import com.firefly.common.core.filters.FilterRequest;
-import com.firefly.common.core.filters.FilterUtils;
-import com.firefly.common.core.queries.PaginationResponse;
+import org.fireflyframework.core.filters.FilterRequest;
+import org.fireflyframework.core.filters.FilterUtils;
+import org.fireflyframework.core.queries.PaginationResponse;
 import com.firefly.core.lending.scoring.core.mappers.bureau.v1.ScoringBureauCallMapper;
 import com.firefly.core.lending.scoring.interfaces.dtos.bureau.v1.ScoringBureauCallDTO;
 import com.firefly.core.lending.scoring.models.entities.bureau.v1.ScoringBureauCall;

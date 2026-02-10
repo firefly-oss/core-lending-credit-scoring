@@ -19,7 +19,7 @@ package com.firefly.core.lending.scoring.interfaces.dtos.cases.v1;
 
 import com.firefly.core.lending.scoring.interfaces.enums.cases.v1.CaseStatusEnum;
 import com.firefly.core.lending.scoring.interfaces.enums.cases.v1.CaseTypeEnum;
-import com.firefly.core.utils.annotations.FilterableId;
+import org.fireflyframework.utils.annotations.FilterableId;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
