@@ -8,7 +8,7 @@
 
 ## Overview
 
-The **Core Lending Credit Scoring Service** is a reactive microservice component of the **Firefly OpenCore Banking Platform**, developed by **Firefly Software Solutions Inc** under the Apache 2.0 license. This service provides comprehensive credit scoring functionality for lending applications, managing the complete lifecycle of credit assessments through sophisticated scoring models, case management, and external bureau integrations.
+The **Core Lending Credit Scoring Service** is a reactive microservice component of the **Firefly OpenCore Banking Platform**, developed by **Firefly Software Foundation** under the Apache 2.0 license. This service provides comprehensive credit scoring functionality for lending applications, managing the complete lifecycle of credit assessments through sophisticated scoring models, case management, and external bureau integrations.
 
 **Organization Website**: [getfirefly.io](https://getfirefly.io)  
 **GitHub Organization**: [firefly-oss](https://github.com/firefly-oss)  
@@ -458,4 +458,4 @@ This project is licensed under the **Apache License 2.0** - see the [LICENSE](LI
 
 **Firefly OpenCore Banking Platform** - Building the future of open banking technology.
 
-*Copyright 2024 Firefly Software Solutions Inc. All rights reserved.*
+*Copyright 2024 Firefly Software Foundation. All rights reserved.*
