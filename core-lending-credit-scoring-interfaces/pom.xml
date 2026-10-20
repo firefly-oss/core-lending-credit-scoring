@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>core-lending-credit-scoring-interfaces</artifactId>
+    <name>core-lending-credit-scoring-interfaces</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

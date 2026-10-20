@@ -12,6 +12,7 @@
     </parent>
 
     <artifactId>core-lending-credit-scoring</artifactId>
+    <name>core-lending-credit-scoring</name>
     <packaging>pom</packaging>
     <modules>
         <module>core-lending-credit-scoring-core</module>
