@@ -1,0 +1,97 @@
+/*
+ * Copyright 2025 Firefly Software Foundation
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+package io.fireflysoftware.core.lending.scoring.web.controllers.result.v1;
+
+import org.fireflyframework.core.filters.FilterRequest;
+import org.fireflyframework.core.queries.PaginationResponse;
+import io.fireflysoftware.core.lending.scoring.core.services.result.v1.ScoringResultService;
+import io.fireflysoftware.core.lending.scoring.interfaces.dtos.result.v1.ScoringResultDTO;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import reactor.core.publisher.Mono;
+
+import java.util.UUID;
+
+@RestController
+@RequestMapping("/api/v1/scoring-cases/{scoringCaseId}/requests/{scoringRequestId}/results")
+@Tag(name = "ScoringResult", description = "Operations for scoring results within a scoring request")
+@RequiredArgsConstructor
+public class ScoringResultController {
+
+    private final ScoringResultService service;
+
+    @GetMapping
+    @Operation(summary = "List or search scoring results for a request")
+    public Mono<ResponseEntity<PaginationResponse<ScoringResultDTO>>> findAll(
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @ModelAttribute FilterRequest<ScoringResultDTO> filterRequest) {
+
+        return service.findAll(scoringCaseId, scoringRequestId, filterRequest)
+                .map(ResponseEntity::ok);
+    }
+
+    @PostMapping
+    @Operation(summary = "Create a new scoring result")
+    public Mono<ResponseEntity<ScoringResultDTO>> create(
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @Valid @RequestBody ScoringResultDTO dto) {
+
+        return service.create(scoringCaseId, scoringRequestId, dto)
+                .map(ResponseEntity::ok);
+    }
+
+    @GetMapping("/{scoringResultId}")
+    @Operation(summary = "Get a scoring result by ID")
+    public Mono<ResponseEntity<ScoringResultDTO>> getById(
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @PathVariable UUID scoringResultId) {
+
+        return service.getById(scoringCaseId, scoringRequestId, scoringResultId)
+                .map(ResponseEntity::ok);
+    }
+
+    @PutMapping("/{scoringResultId}")
+    @Operation(summary = "Update a scoring result")
+    public Mono<ResponseEntity<ScoringResultDTO>> update(
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @PathVariable UUID scoringResultId,
+            @Valid @RequestBody ScoringResultDTO dto) {
+
+        return service.update(scoringCaseId, scoringRequestId, scoringResultId, dto)
+                .map(ResponseEntity::ok);
+    }
+
+    @DeleteMapping("/{scoringResultId}")
+    @Operation(summary = "Delete a scoring result")
+    public Mono<ResponseEntity<Void>> delete(
+            @PathVariable UUID scoringCaseId,
+            @PathVariable UUID scoringRequestId,
+            @PathVariable UUID scoringResultId) {
+
+        return service.delete(scoringCaseId, scoringRequestId, scoringResultId)
+                .thenReturn(ResponseEntity.noContent().build());
+    }
+}
